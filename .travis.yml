@@ -3,11 +3,3 @@
 language: R
 cache: packages
 
-os:
-  -linux
-  -windows
-  
-r:
-  - 3.5
-  - release
-  - devel
