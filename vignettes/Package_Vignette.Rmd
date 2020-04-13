@@ -1,0 +1,85 @@
+---
+title: "pfars2 Package Vignette"
+output: rmarkdown::html_vignette
+author: Ibrahim Badalov
+vignette: >
+  %\VignetteIndexEntry{Package_Vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(pfars2)
+```
+
+## General Information About pfars2 Package.
+This package is intented to read, manipulate and visualize datasets from US National
+Highway Traffic Safety Administration's Fatality Analysis Reporting System.
+There are five functions:
+1. make_filename()
+2. fars_read()
+3. fars_read_years()
+4. fars_summarize_years()
+5. fars_map_state()
+
+
+## Definitions and Examples
+
+#### make_filename()
+The main purpose of this function is to create names for datasets to read.
+It takes year argument to create filename for relevant year. It should be
+pointed out that file name has a default structure so 
+you can only manipulate the year.
+```{r}
+make_filename(year = 2013)
+```
+
+
+#### fars_read()
+This function is to read dataset from working directory. A dataset can be
+read in two ways, writing dataset name manually and using make_filename function.
+While giving both examples only run one of them.
+```{r}
+#fars_read(filename = "accident_2013.csv")
+fars_read(filename = make_filename(year = 2013))
+```
+
+
+#### fars_read_years()
+This function has similiar functionality with fars_read(), however it has a series of
+factors. This is able to read a couple of datasets at one call storing in a list.
+It takes a vector consists of years rather than dataset names and only reads year
+and month columns from datasets. It can be merged doing some manipulation 
+as given in the example.
+```{r warning=FALSE}
+fars_read_years(c(2013,2014))
+suppressPackageStartupMessages(library(dplyr))
+fars_read_years(years = c(2013,2014)) %>%
+  bind_rows() %>% head(10)
+```
+
+
+#### fars_summarize_years()
+This function of the package pfars2 helps to read and summarize counts by year
+giving years as columns. As argument it takes a numeric vector of years.
+The example below explains far better purpose of the function.
+```{r}
+fars_summarize_years(years = c(2013,2014))
+```
+
+
+#### fars_map_state()
+This function has a bit more different task comparing others. It allows user to visualize
+state map with data points. It takes state number and years as arguments.
+Example below illustrates in better way.
+```{r}
+library(maps)
+fars_map_state(state.num = 50, year = 2013)
+```
