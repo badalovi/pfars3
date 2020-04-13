@@ -2,7 +2,7 @@
 # pfars2
 
 <!-- badges: start -->
-[![Travis build status](https://travis-ci.com/badalovi/pfars2.svg?branch=master)](https://travis-ci.com/badalovi/pfars2)
+[![Travis build status](https://travis-ci.com/badalovi/pfars3.svg?branch=master)](https://travis-ci.com/badalovi/pfars3)
 <!-- badges: end -->
 
 The goal of pfars2 is to to read, manipulate and in some sense to visualize
